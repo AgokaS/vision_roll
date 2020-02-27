@@ -62,22 +62,36 @@ if __name__ == '__main__':
 Vision = Tk()
 Vision.title("Компьютерное зрение")
 Vision.minsize(1200, 800)
+
 f_right = Frame(Vision,
-                   width = 100,
-                   height = 200,
-                   bg = 'gray')
-num =StringVar()
-num_camera = Entry(f_right,width = 15, textvariable=num)
-num_camera.pack()
-OptionsCamera = Button(f_right ,
-                          text ="Настройка" ,
-                          command =__CameraVisionColibrated__)
-Options = Button(f_right ,
-                          text ="Настройка c параметром" ,
-                          command =Setting)
-Options.pack()
+                bg = 'gray')
 f_right.pack(side = RIGHT, fill = Y)
-OptionsCamera.pack(side = TOP)
+
+camera_seting = LabelFrame(f_right,
+                           text = "Camera seting", 
+                           bg = 'gray',
+                           border = 2)
+camera_seting.pack(side = TOP, fill= X, ipady = 5, padx= 5)
+
+l_text = Label(camera_seting,
+               text = "Номер камеры",
+               bg = f_right['bg'])
+l_text.pack(side=LEFT)
+
+num =StringVar()
+num_camera = Entry(camera_seting, 
+                   textvariable=num)
+num_camera.pack(side = LEFT, padx = 10)
+
+Options = Button(camera_seting ,
+                  text ="Настройка c параметром" ,
+                  command =Setting)
+Options.pack(side = LEFT)
+
+OptionsCamera = Button(f_right ,
+                      text ="Настройка" ,
+                      command =__CameraVisionColibrated__)
+OptionsCamera.pack(side = TOP, fill = X , padx = 5 )
 
 Vision.mainloop() 
 
