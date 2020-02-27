@@ -3,10 +3,10 @@ Avtors: Denis Pankratov, Egor Sidorov """
 import cv2 
 import numpy as np
 import neurolab as nl
-import tkinter as tk
+from tkinter import* 
 
-def __CameraVisionColibrated__():
-    cap = cv2.VideoCapture(0)
+def __CameraVisionColibrated__(num_camera=0):
+    cap = cv2.VideoCapture(num_camera)
     cv2.namedWindow( "settings") # создаем окно настроек
     
     
@@ -51,27 +51,33 @@ def __CameraVisionColibrated__():
     cap.release()
     cv2.destroyAllWindows()
     
-
-
+def Setting():
+    __CameraVisionColibrated__(int(num.get()))
+    
 if __name__ == '__main__':
     def nothing(*arg):
         pass
 
 
-Vision = tk.Tk()
+Vision = Tk()
 Vision.title("Компьютерное зрение")
 Vision.minsize(1200, 800)
-f_right = tk.Frame(Vision,
-                   width = 200,
-                   height = 100,
-                   bg = 'red')
-
-OptionsCamera = tk.Button(f_right ,
+f_right = Frame(Vision,
+                   width = 100,
+                   height = 200,
+                   bg = 'gray')
+num =StringVar()
+num_camera = Entry(f_right,width = 15, textvariable=num)
+num_camera.pack()
+OptionsCamera = Button(f_right ,
                           text ="Настройка" ,
                           command =__CameraVisionColibrated__)
-
-f_right.pack(side = tk.RIGHT)
-OptionsCamera.pack(side = tk.TOP)
+Options = Button(f_right ,
+                          text ="Настройка c параметром" ,
+                          command =Setting)
+Options.pack()
+f_right.pack(side = RIGHT, fill = Y)
+OptionsCamera.pack(side = TOP)
 
 Vision.mainloop() 
 
