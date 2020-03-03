@@ -72,14 +72,16 @@ def PhotoC():
     canvas.create_image(200,200,image=image)
     Vision.mainloop()
 
+#Главное окно программы
 Vision = Tk()
 Vision.title("Компьютерное зрение")
 Vision.minsize(1200, 800)
-
+#Боковое меню
 f_right = Frame(Vision,
                 bg = 'gray')
 f_right.pack(side = RIGHT, fill = Y)
 
+#Раздел настроек камеры
 camera_seting = LabelFrame(f_right,
                            text = "Camera seting", 
                            bg = 'gray',
@@ -90,7 +92,7 @@ l_text = Label(camera_seting,
                text = "Номер камеры",
                bg = f_right['bg'])
 l_text.pack(side=LEFT)
-
+#Ввод номера камеры
 num = StringVar()
 num_camera = Entry(camera_seting, 
                    textvariable=num)
@@ -113,6 +115,7 @@ cli = Button(f_right ,
              text ="Снимок" ,
              command = PhotoC)
 cli.pack()
+
 
 Vision.mainloop() 
 
